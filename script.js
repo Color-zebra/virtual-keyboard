@@ -1,10 +1,5 @@
-window.onload = () => {
-  function addCSS(aFile) {
-    const style = window.document.createElement('link');
-    style.href = aFile;
-    style.rel = 'stylesheet';
-    document.head.appendChild(style);
-  }
+import App from './modules/app.js';
 
-  addCSS('style.css');
-};
+const app = new App();
+
+app.initApp();

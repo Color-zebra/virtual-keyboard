@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script defer src="script.js"></script>
-  <title>Document</title>
+  <script defer type="module" src="script.js"></script>
+  <title>Virtual keyboard</title>
 </head>
 <body>
-  
+  <div class="wrapper">
+    <div class="keyboard">
+      <div class="keyboard__monitor">
+        <textarea class="keyboard__screen" id="output" cols="135"></textarea>
+      </div>
+      <div class="keyboard__board">
+        <div class="keyboard__keyzone" id="input"></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
