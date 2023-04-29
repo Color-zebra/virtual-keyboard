@@ -12,7 +12,9 @@ class Keyboard extends KeyFactory {
     this.enShifted = '~ ! @ # $ % ^ & * ( ) _ + Backspace Tab Q W E R T Y U I O P [ ] \\ Del CapsLock A S D F G H J K L ; " Enter Shift Z X C V B N M < > ? \u2191 Shift Ctrl Win Alt Space Alt \u2190 \u2193 \u2192 Ctrl'.split(' ');
     this.keyCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace', 'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete', 'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter', 'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'];
     this.letterKeys = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash'];
-    this.keys = [];
+    this.nonHandledCodes = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
+    this.keys = {};
+    this.pressed = [];
   }
 
   getLang() {
@@ -23,6 +25,12 @@ class Keyboard extends KeyFactory {
   setLang(lang) {
     this.lang = lang;
     localStorage.setItem('lang', this.lang);
+  }
+
+  changeLang() {
+    const newLang = this.lang === 'en' ? 'ru' : 'en';
+    this.setLang(newLang);
+    this.updateKeyboard();
   }
 
   initKeyboard() {
@@ -37,9 +45,46 @@ class Keyboard extends KeyFactory {
         this.enShifted[index],
         this.lang,
       );
-      this.keys.push(currKey);
-      input.append(this.keys[this.keys.length - 1].keyElem);
+      this.keys[code] = currKey;
+      input.append(this.keys[code].keyElem);
     });
+    this.hydrateKeyboard();
+  }
+
+  updateKeyboard() {
+    Object.keys(this.keys).forEach((keyName) => {
+      this.keys[keyName].keyValue.innerText = this.keys[keyName][this.lang];
+    });
+  }
+
+  checkPressed() {
+    if ((this.pressed.includes('ControlLeft') || this.pressed.includes('ControlRight')) && (this.pressed.includes('ShiftRight') || this.pressed.includes('ShiftLeft'))) {
+      this.changeLang();
+    }
+  }
+
+  hydrateKeyboard() {
+    const handleKeyDown = (e) => {
+      if (this.nonHandledCodes.includes(e.code)) return;
+      e.preventDefault();
+      const keyEl = this.keys[e.code].keyElem;
+      keyEl.classList.add('active');
+      if (!this.pressed.includes(e.code)) {
+        this.pressed.push(e.code);
+      }
+      if (e.repeat === false) {
+        this.checkPressed();
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      const keyEl = this.keys[e.code].keyElem;
+      keyEl.classList.remove('active');
+      this.pressed = this.pressed.filter((pressedKeyCode) => pressedKeyCode !== e.code);
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keyup', handleKeyUp);
   }
 }
 

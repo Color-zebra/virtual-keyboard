@@ -10,6 +10,7 @@ class Key extends KeyFactory {
     this.enShifted = engShifted;
     this.currLang = currLang;
     this.keyElem = this.createKeyElem('div', ['key', this.keyCode], null, this[this.currLang]);
+    this.keyValue = this.keyElem.querySelector('.back');
   }
 
   showRus() {
