@@ -26,7 +26,6 @@ class Keyboard extends KeyFactory {
   }
 
   initKeyboard() {
-    console.log(this.lang);
     const input = document.getElementById('input');
     this.getLang();
     this.keyCodes.forEach((code, index) => {
@@ -40,7 +39,6 @@ class Keyboard extends KeyFactory {
       );
       this.keys.push(currKey);
       input.append(this.keys[this.keys.length - 1].keyElem);
-      console.log(this.keys[this.keys.length - 1]);
     });
   }
 }
