@@ -165,37 +165,37 @@ body {
 
 @-webkit-keyframes letters-flame {
   0% {
-    text-shadow: 2px -5px 4px #FCCF7E, 2px -5px 4px #FCCF7E, 2px -5px 4px #FCCF7E, 2px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
+    text-shadow: 4px -5px 4px #FCCF7E, 4px -5px 4px #FCCF7E, 4px -5px 4px #FCCF7E, 4px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
   }
   25% {
-    text-shadow: -1px -5px 4px #FCCF7E, -1px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
+    text-shadow: -1px -2px 8px #FCCF7E, -1px -2px 8px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
   }
   50% {
     text-shadow: 0px -5px 4px #FCCF7E, 0px -5px 4px #FCCF7E, 0px -5px 4px #FCCF7E, 0px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
   }
   75% {
-    text-shadow: 1px -5px 4px #FCCF7E, 1px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
+    text-shadow: 1px -3px 8px #FCCF7E, 1px -3px 8px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
   }
   100% {
-    text-shadow: -2px -5px 4px #FCCF7E, -2px -5px 4px #FCCF7E, -2px -5px 4px #FCCF7E, -2px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 20px #B32213, 0 -5px 20px #B32213, 0 -5px 20px #B32213;
+    text-shadow: -4px -5px 4px #FCCF7E, -4px -5px 4px #FCCF7E, -4px -5px 4px #FCCF7E, -4px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 20px #B32213, 0 -5px 20px #B32213, 0 -5px 20px #B32213;
   }
 }
 
 @keyframes letters-flame {
   0% {
-    text-shadow: 2px -5px 4px #FCCF7E, 2px -5px 4px #FCCF7E, 2px -5px 4px #FCCF7E, 2px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
+    text-shadow: 4px -5px 4px #FCCF7E, 4px -5px 4px #FCCF7E, 4px -5px 4px #FCCF7E, 4px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
   }
   25% {
-    text-shadow: -1px -5px 4px #FCCF7E, -1px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
+    text-shadow: -1px -2px 8px #FCCF7E, -1px -2px 8px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
   }
   50% {
     text-shadow: 0px -5px 4px #FCCF7E, 0px -5px 4px #FCCF7E, 0px -5px 4px #FCCF7E, 0px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
   }
   75% {
-    text-shadow: 1px -5px 4px #FCCF7E, 1px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
+    text-shadow: 1px -3px 8px #FCCF7E, 1px -3px 8px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213, 0 0px 20px #B32213;
   }
   100% {
-    text-shadow: -2px -5px 4px #FCCF7E, -2px -5px 4px #FCCF7E, -2px -5px 4px #FCCF7E, -2px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 20px #B32213, 0 -5px 20px #B32213, 0 -5px 20px #B32213;
+    text-shadow: -4px -5px 4px #FCCF7E, -4px -5px 4px #FCCF7E, -4px -5px 4px #FCCF7E, -4px -5px 4px #FCCF7E, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 10px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 15px #B32213, 0 -5px 20px #B32213, 0 -5px 20px #B32213, 0 -5px 20px #B32213;
   }
 }
 @-webkit-keyframes key-flame {

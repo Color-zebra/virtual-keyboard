@@ -147,23 +147,38 @@ body {
 
 @keyframes letters-flame {
   0% {
-    text-shadow: 2px -5px 4px $yellow, 2px -5px 4px $yellow, 2px -5px 4px $yellow, 2px -5px 4px $yellow, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 15px $red, 0 0px 20px $red, 0 0px 20px $red, 0 0px 20px $red;
+    text-shadow: 4px -5px 4px $yellow, 4px -5px 4px $yellow, 4px -5px 4px $yellow, 4px -5px 4px $yellow,
+    0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red,
+    0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 15px $red,
+    0 0px 20px $red, 0 0px 20px $red, 0 0px 20px $red;
   }
 
   25% {
-    text-shadow: -1px -5px 4px $yellow, -1px -5px 4px $yellow, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 15px $red, 0 0px 20px $red, 0 0px 20px $red, 0 0px 20px $red;
+    text-shadow: -1px -2px 8px $yellow, -1px -2px 8px $yellow,
+    0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red,
+    0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 15px $red,
+    0 0px 20px $red, 0 0px 20px $red, 0 0px 20px $red;
   }
 
   50% {
-    text-shadow: 0px -5px 4px $yellow, 0px -5px 4px $yellow, 0px -5px 4px $yellow, 0px -5px 4px $yellow, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 15px $red, 0 0px 20px $red, 0 0px 20px $red, 0 0px 20px $red;
+    text-shadow: 0px -5px 4px $yellow, 0px -5px 4px $yellow, 0px -5px 4px $yellow, 0px -5px 4px $yellow,
+    0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red,
+    0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 15px $red,
+    0 0px 20px $red, 0 0px 20px $red, 0 0px 20px $red;
   }
 
   75% {
-    text-shadow: 1px -5px 4px $yellow, 1px -5px 4px $yellow, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 15px $red, 0 0px 20px $red, 0 0px 20px $red, 0 0px 20px $red;
+    text-shadow: 1px -3px 8px $yellow, 1px -3px 8px $yellow,
+    0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red,
+    0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 15px $red,
+    0 0px 20px $red, 0 0px 20px $red, 0 0px 20px $red;
   }
 
   100% {
-    text-shadow: -2px -5px 4px $yellow, -2px -5px 4px $yellow, -2px -5px 4px $yellow, -2px -5px 4px $yellow, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 20px $red, 0 -5px 20px $red, 0 -5px 20px $red;
+    text-shadow: -4px -5px 4px $yellow, -4px -5px 4px $yellow, -4px -5px 4px $yellow, -4px -5px 4px $yellow,
+    0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red, 0 -5px 10px $red,
+    0 -5px 15px $red, 0 -5px 15px $red, 0 -5px 15px $red,
+    0 -5px 20px $red, 0 -5px 20px $red, 0 -5px 20px $red;
   }
 }
 
