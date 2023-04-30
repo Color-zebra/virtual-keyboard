@@ -25,6 +25,7 @@ body {
 
 .wrapper {
 }
+
 .keyboard {
   display: flex;
   flex-direction: column;
@@ -46,7 +47,10 @@ body {
       height: 100%;
       resize: none;
       background-color: rgba(39, 39, 39, 0.8);
-
+      font-family: "IBM Plex Mono", monospace;
+      white-space: pre-wrap;
+      color: #FCCF7E;
+      font-size: 20px;
 		}
 
 		&__board {
