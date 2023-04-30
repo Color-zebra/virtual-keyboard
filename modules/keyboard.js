@@ -88,6 +88,10 @@ class Keyboard extends KeyFactory {
         };
         document.addEventListener('keyup', removeShift);
       },
+      CapsLock: () => {
+        this.isCapsed = !this.isCapsed;
+        this.updateKeyboard();
+      },
     };
   }
 
@@ -129,15 +133,17 @@ class Keyboard extends KeyFactory {
   }
 
   updateKeyboard() {
-    if (this.isCapsed || this.isShifted) {
+    if ((this.isCapsed && !this.isShifted) || (!this.isCapsed && this.isShifted)) {
+      console.log('renderBig');
       Object.keys(this.keys).forEach((keyName) => {
         this.keys[keyName].keyValue.innerText = this.keys[keyName][`${this.lang}Shifted`];
       });
-      return;
+    } else {
+      console.log('renderSmall');
+      Object.keys(this.keys).forEach((keyName) => {
+        this.keys[keyName].keyValue.innerText = this.keys[keyName][this.lang];
+      });
     }
-    Object.keys(this.keys).forEach((keyName) => {
-      this.keys[keyName].keyValue.innerText = this.keys[keyName][this.lang];
-    });
   }
 
   checkPressed() {
