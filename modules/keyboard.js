@@ -61,21 +61,27 @@ class Keyboard extends KeyFactory {
       },
       Space: () => {
         this.handleLetterKey({ keyValue: { innerText: ' ' } });
+        this.checkShift();
       },
       Enter: () => {
         this.handleLetterKey({ keyValue: { innerText: '\n' } });
+        this.checkShift();
       },
       ArrowUp: () => {
         this.handleLetterKey({ keyValue: { innerText: '\u2191' } });
+        this.checkShift();
       },
       ArrowDown: () => {
         this.handleLetterKey({ keyValue: { innerText: '\u2193' } });
+        this.checkShift();
       },
       ArrowLeft: () => {
         this.handleLetterKey({ keyValue: { innerText: '\u2190' } });
+        this.checkShift();
       },
       ArrowRight: () => {
         this.handleLetterKey({ keyValue: { innerText: '\u2192' } });
+        this.checkShift();
       },
       removeShift: () => {
         this.isShifted = false;
@@ -106,16 +112,13 @@ class Keyboard extends KeyFactory {
         }
         this.isShifted = true;
         this.updateKeyboard();
-        const removeShift = (evnt) => {
+        const killShift = (evnt) => {
           if (evnt.code === 'ShiftLeft' || evnt.code === 'ShiftRight') {
-            this.isShifted = false;
-            this.keys.ShiftLeft.keyElem.classList.remove('active');
-            this.keys.ShiftRight.keyElem.classList.remove('active');
-            this.updateKeyboard();
-            document.removeEventListener('keyup', removeShift);
+            this.specialKeysFuncs.removeShift();
+            document.removeEventListener('keyup', killShift);
           }
         };
-        document.addEventListener('keyup', removeShift);
+        document.addEventListener('keyup', killShift);
       },
       ShiftRight: (e) => {
         if (e.repeat) return;
@@ -132,16 +135,13 @@ class Keyboard extends KeyFactory {
         }
         this.isShifted = true;
         this.updateKeyboard();
-        const removeShift = (evnt) => {
+        const killShift = (evnt) => {
           if (evnt.code === 'ShiftLeft' || evnt.code === 'ShiftRight') {
-            this.isShifted = false;
-            this.keys.ShiftLeft.keyElem.classList.remove('active');
-            this.keys.ShiftRight.keyElem.classList.remove('active');
-            this.updateKeyboard();
-            document.removeEventListener('keyup', removeShift);
+            this.specialKeysFuncs.removeShift();
+            document.removeEventListener('keyup', killShift);
           }
         };
-        document.addEventListener('keyup', removeShift);
+        document.addEventListener('keyup', killShift);
       },
       CapsLock: (e) => {
         if (e.repeat) return;
