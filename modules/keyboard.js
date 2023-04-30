@@ -15,6 +15,16 @@ class Keyboard extends KeyFactory {
     this.nonHandledCodes = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
     this.keys = {};
     this.pressed = [];
+    this.output = null;
+    this.handleLetterKey = (keyObj) => {
+      const pos = this.output.selectionStart;
+      const finishPos = this.output.selectionEnd;
+      this.output.value = this.output.value.slice(0, pos)
+                          + keyObj.keyValue.innerText
+                          + this.output.value.slice(finishPos);
+      this.output.selectionStart = pos + 1;
+      this.output.selectionEnd = pos + 1;
+    };
   }
 
   getLang() {
@@ -49,6 +59,8 @@ class Keyboard extends KeyFactory {
       input.append(this.keys[code].keyElem);
     });
     this.hydrateKeyboard();
+    this.output = document.getElementById('output');
+    this.output.focus();
   }
 
   updateKeyboard() {
@@ -69,15 +81,22 @@ class Keyboard extends KeyFactory {
       e.preventDefault();
       const keyEl = this.keys[e.code].keyElem;
       keyEl.classList.add('active');
+
       if (!this.pressed.includes(e.code)) {
         this.pressed.push(e.code);
       }
+
       if (e.repeat === false) {
         this.checkPressed();
+      }
+
+      if (this.letterKeys.includes(e.code)) {
+        this.handleLetterKey(this.keys[e.code]);
       }
     };
 
     const handleKeyUp = (e) => {
+      if (!this.keys[e.code]) return;
       const keyEl = this.keys[e.code].keyElem;
       keyEl.classList.remove('active');
       this.pressed = this.pressed.filter((pressedKeyCode) => pressedKeyCode !== e.code);

@@ -15,24 +15,19 @@ class App extends KeyFactory {
 
   initApp() {
     this.addCSS('style.css');
-    const output = document.getElementById('output');
-    output.addEventListener('click', () => {
-      console.log(output.value);
-      console.log(output.value.split('').filter((letter) => letter === '\n').length);
-    });
-    this.keyboard.initKeyboard();
-    /* document.body.innerHTML = `
-      <div class="wrapper">
-        <div class="keyboard">
-          <div class="keyboard__monitor">
-            <textarea class="keyboard__screen"></textarea>
-          </div>
-          <div class="keyboard__board">
-            <div class="keyboard__keyzone"></div>
-          </div>
+    document.body.innerHTML = `
+    <div class="wrapper">
+      <div class="keyboard">
+        <div class="keyboard__monitor">
+          <textarea class="keyboard__screen" id="output" cols="135"></textarea>
+        </div>
+        <div class="keyboard__board">
+          <div class="keyboard__keyzone" id="input"></div>
         </div>
       </div>
-    `; */
+    </div>
+    `;
+    this.keyboard.initKeyboard();
   }
 }
 
