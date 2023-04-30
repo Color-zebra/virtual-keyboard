@@ -17,13 +17,47 @@ class Keyboard extends KeyFactory {
     this.pressed = [];
     this.output = null;
     this.handleLetterKey = (keyObj) => {
-      const pos = this.output.selectionStart;
+      const startPos = this.output.selectionStart;
       const finishPos = this.output.selectionEnd;
-      this.output.value = this.output.value.slice(0, pos)
+      this.output.value = this.output.value.slice(0, startPos)
                           + keyObj.keyValue.innerText
                           + this.output.value.slice(finishPos);
-      this.output.selectionStart = pos + 1;
-      this.output.selectionEnd = pos + 1;
+      this.output.selectionStart = startPos + 1;
+      this.output.selectionEnd = startPos + 1;
+    };
+    this.specialKeysFuncs = {
+      Backspace: () => {
+        const startPos = this.output.selectionStart;
+        const finishPos = this.output.selectionEnd;
+        if (startPos === finishPos) {
+          if (startPos === 0) return;
+          this.output.value = this.output.value.slice(0, startPos - 1)
+                              + this.output.value.slice(startPos);
+        } else {
+          this.output.value = this.output.value.slice(0, startPos)
+                              + this.output.value.slice(finishPos);
+        }
+        this.output.selectionStart = startPos - 1;
+        this.output.selectionEnd = startPos - 1;
+      },
+      Delete: () => {
+        const startPos = this.output.selectionStart;
+        const finishPos = this.output.selectionEnd;
+        if (startPos === finishPos) {
+          if (startPos === this.output.value.length) return;
+          this.output.value = this.output.value.slice(0, startPos)
+                              + this.output.value.slice(startPos + 1);
+        } else {
+          this.output.value = this.output.value.slice(0, startPos)
+                              + this.output.value.slice(finishPos);
+        }
+        this.output.selectionStart = startPos;
+        this.output.selectionEnd = startPos;
+      },
+      Space: () => {
+        this.handleLetterKey({ keyValue: { innerText: ' ' } });
+      },
+
     };
   }
 
@@ -92,6 +126,8 @@ class Keyboard extends KeyFactory {
 
       if (this.letterKeys.includes(e.code)) {
         this.handleLetterKey(this.keys[e.code]);
+      } else if (this.specialKeysFuncs[e.code]) {
+        this.specialKeysFuncs[e.code]();
       }
     };
 
