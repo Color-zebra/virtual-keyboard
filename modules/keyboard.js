@@ -6,6 +6,7 @@ class Keyboard extends KeyFactory {
     super();
     this.lang = 'en';
     this.isShifted = false;
+    this.isShiftedByMouse = false;
     this.isCapsed = false;
     this.ruLabel = 'ё 1 2 3 4 5 6 7 8 9 0 - = Backspace Tab й ц у к е н г ш щ з х ъ \\ Del CapsLock ф ы в а п р о л д ж э Enter Shift я ч с м и т ь б ю . \u2191 Shift Ctrl Win Alt Space Alt \u2190 \u2193 \u2192 Ctrl'.split(' ');
     this.enLabel = '` 1 2 3 4 5 6 7 8 9 0 - = Backspace Tab q w e r t y u i o p { } \\ Del CapsLock a s d f g h j k l : \' Enter Shift z x c v b n m , . / \u2191 Shift Ctrl Win Alt Space Alt \u2190 \u2193 \u2192 Ctrl'.split(' ');
@@ -17,6 +18,7 @@ class Keyboard extends KeyFactory {
     this.keys = {};
     this.pressed = [];
     this.output = null;
+    this.input = null;
     this.handleLetterKey = (keyObj) => {
       const startPos = this.output.selectionStart;
       const finishPos = this.output.selectionEnd;
@@ -34,12 +36,14 @@ class Keyboard extends KeyFactory {
           if (startPos === 0) return;
           this.output.value = this.output.value.slice(0, startPos - 1)
                               + this.output.value.slice(startPos);
+          this.output.selectionStart = startPos - 1;
+          this.output.selectionEnd = startPos - 1;
         } else {
           this.output.value = this.output.value.slice(0, startPos)
                               + this.output.value.slice(finishPos);
+          this.output.selectionStart = startPos;
+          this.output.selectionEnd = startPos;
         }
-        this.output.selectionStart = startPos - 1;
-        this.output.selectionEnd = startPos - 1;
       },
       Delete: () => {
         const startPos = this.output.selectionStart;
@@ -58,8 +62,32 @@ class Keyboard extends KeyFactory {
       Space: () => {
         this.handleLetterKey({ keyValue: { innerText: ' ' } });
       },
+      removeShift: () => {
+        this.isShifted = false;
+        this.keys.ShiftLeft.keyElem.classList.remove('active');
+        this.keys.ShiftRight.keyElem.classList.remove('active');
+        this.keys.ShiftLeft.keyElem.classList.remove('toggled');
+        this.keys.ShiftRight.keyElem.classList.remove('toggled');
+        this.updateKeyboard();
+      },
+      setShift: () => {
+        this.isShifted = true;
+        this.keys.ShiftLeft.keyElem.classList.add('toggled');
+        this.updateKeyboard();
+      },
       ShiftLeft: (e) => {
         if (e.repeat) return;
+        if (e.type === 'click') {
+          if (!this.isShifted) {
+            this.specialKeysFuncs.setShift();
+            this.isShiftedByMouse = true;
+            this.pressed.push('ShiftLeft');
+          } else {
+            this.specialKeysFuncs.removeShift();
+            this.pressed = this.pressed.filter((pressedKeyCode) => pressedKeyCode !== 'ShiftLeft');
+          }
+          return;
+        }
         this.isShifted = true;
         this.updateKeyboard();
         const removeShift = (evnt) => {
@@ -88,9 +116,11 @@ class Keyboard extends KeyFactory {
         };
         document.addEventListener('keyup', removeShift);
       },
-      CapsLock: () => {
+      CapsLock: (e) => {
+        if (e.repeat) return;
         this.isCapsed = !this.isCapsed;
         this.updateKeyboard();
+        this.keys.CapsLock.keyElem.classList.toggle('toggled');
       },
     };
   }
@@ -126,29 +156,36 @@ class Keyboard extends KeyFactory {
       this.keys[code] = currKey;
       input.append(this.keys[code].keyElem);
     });
-    this.hydrateKeyboard();
     this.output = document.getElementById('output');
+    this.input = document.getElementById('input');
+    this.hydrateKeyboard();
     this.output.focus();
     this.updateKeyboard();
   }
 
   updateKeyboard() {
     if ((this.isCapsed && !this.isShifted) || (!this.isCapsed && this.isShifted)) {
-      console.log('renderBig');
       Object.keys(this.keys).forEach((keyName) => {
         this.keys[keyName].keyValue.innerText = this.keys[keyName][`${this.lang}Shifted`];
       });
     } else {
-      console.log('renderSmall');
       Object.keys(this.keys).forEach((keyName) => {
         this.keys[keyName].keyValue.innerText = this.keys[keyName][this.lang];
       });
     }
+    this.checkShift();
   }
 
   checkPressed() {
     if ((this.pressed.includes('ControlLeft') || this.pressed.includes('ControlRight')) && (this.pressed.includes('ShiftRight') || this.pressed.includes('ShiftLeft'))) {
       this.changeLang();
+    }
+  }
+
+  checkShift() {
+    if (this.isShiftedByMouse) {
+      this.isShiftedByMouse = false;
+      this.specialKeysFuncs.removeShift();
     }
   }
 
@@ -166,12 +203,34 @@ class Keyboard extends KeyFactory {
 
       if (this.letterKeys.includes(e.code)) {
         this.handleLetterKey(this.keys[e.code]);
+        this.checkShift();
       } else if (this.specialKeysFuncs[e.code]) {
         this.specialKeysFuncs[e.code](e);
       }
 
       if (e.repeat === false) {
         this.checkPressed();
+      }
+    };
+
+    const handleMouseClick = (e) => {
+      if (e.target.closest('.key')) {
+        const keyCode = e.target.closest('.key').getAttribute('id');
+        if (!this.keys[keyCode]) return;
+        const key = this.keys[keyCode];
+
+        if (this.letterKeys.includes(keyCode)) {
+          this.handleLetterKey(key);
+          this.checkShift();
+        } else if (this.specialKeysFuncs[keyCode]) {
+          this.specialKeysFuncs[keyCode](e);
+        }
+
+        if (!this.pressed.includes(keyCode)) {
+          this.pressed.push(keyCode);
+          this.checkPressed();
+          this.pressed = this.pressed.filter((pressedKeyCode) => pressedKeyCode !== keyCode);
+        }
       }
     };
 
@@ -182,8 +241,18 @@ class Keyboard extends KeyFactory {
       this.pressed = this.pressed.filter((pressedKeyCode) => pressedKeyCode !== e.code);
     };
 
+    const preventBlur = () => {
+      const startPos = this.output.selectionStart;
+      const finishPos = this.output.selectionEnd;
+      this.output.focus();
+      this.output.selectionStart = startPos;
+      this.output.selectionEnd = finishPos;
+    };
+
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keyup', handleKeyUp);
+    this.output.addEventListener('blur', preventBlur);
+    this.input.addEventListener('click', handleMouseClick);
   }
 }
 

@@ -147,6 +147,17 @@ body {
   border: 2px solid #171722;
 }
 
+.toggled {
+  animation: key-flame 1s cubic-bezier(0.5, 0, 0.75, 0) infinite alternate-reverse;
+  color: #171722;
+  text-shadow: 0 0 10px #171722;
+  -webkit-transform: scale(0.9, 0.9);
+          transform: scale(0.9, 0.9);
+  border-radius: 15px;
+  font-weight: 700;
+  border: 2px solid #171722;
+}
+
 .key:active > .back {
   background-color: rgba(2, 3, 5, 0.0078431373);
 }
