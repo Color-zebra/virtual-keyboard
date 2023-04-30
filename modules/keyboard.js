@@ -6,6 +6,7 @@ class Keyboard extends KeyFactory {
     super();
     this.lang = 'en';
     this.isShifted = false;
+    this.isCapsed = false;
     this.ruLabel = 'ё 1 2 3 4 5 6 7 8 9 0 - = Backspace Tab й ц у к е н г ш щ з х ъ \\ Del CapsLock ф ы в а п р о л д ж э Enter Shift я ч с м и т ь б ю . \u2191 Shift Ctrl Win Alt Space Alt \u2190 \u2193 \u2192 Ctrl'.split(' ');
     this.enLabel = '` 1 2 3 4 5 6 7 8 9 0 - = Backspace Tab q w e r t y u i o p { } \\ Del CapsLock a s d f g h j k l : \' Enter Shift z x c v b n m , . / \u2191 Shift Ctrl Win Alt Space Alt \u2190 \u2193 \u2192 Ctrl'.split(' ');
     this.ruShifted = 'Ё ! " № ; % : ? * ( ) - = Backspace Tab Й Ц У К Е Н Г Ш Щ З Х Ъ \\ Del CapsLock Ф Ы В А П Р О Л Д Ж Э Enter Shift Я Ч С М И Т Ь Б Ю , \u2191 Shift Ctrl Win Alt Space Alt \u2190 \u2193 \u2192 Ctrl'.split(' ');
@@ -57,7 +58,36 @@ class Keyboard extends KeyFactory {
       Space: () => {
         this.handleLetterKey({ keyValue: { innerText: ' ' } });
       },
-
+      ShiftLeft: (e) => {
+        if (e.repeat) return;
+        this.isShifted = true;
+        this.updateKeyboard();
+        const removeShift = (evnt) => {
+          if (evnt.code === 'ShiftLeft' || evnt.code === 'ShiftRight') {
+            this.isShifted = false;
+            this.keys.ShiftLeft.keyElem.classList.remove('active');
+            this.keys.ShiftRight.keyElem.classList.remove('active');
+            this.updateKeyboard();
+            document.removeEventListener('keyup', removeShift);
+          }
+        };
+        document.addEventListener('keyup', removeShift);
+      },
+      ShiftRight: (e) => {
+        if (e.repeat) return;
+        this.isShifted = true;
+        this.updateKeyboard();
+        const removeShift = (evnt) => {
+          if (evnt.code === 'ShiftLeft' || evnt.code === 'ShiftRight') {
+            this.isShifted = false;
+            this.keys.ShiftLeft.keyElem.classList.remove('active');
+            this.keys.ShiftRight.keyElem.classList.remove('active');
+            this.updateKeyboard();
+            document.removeEventListener('keyup', removeShift);
+          }
+        };
+        document.addEventListener('keyup', removeShift);
+      },
     };
   }
 
@@ -95,9 +125,16 @@ class Keyboard extends KeyFactory {
     this.hydrateKeyboard();
     this.output = document.getElementById('output');
     this.output.focus();
+    this.updateKeyboard();
   }
 
   updateKeyboard() {
+    if (this.isCapsed || this.isShifted) {
+      Object.keys(this.keys).forEach((keyName) => {
+        this.keys[keyName].keyValue.innerText = this.keys[keyName][`${this.lang}Shifted`];
+      });
+      return;
+    }
     Object.keys(this.keys).forEach((keyName) => {
       this.keys[keyName].keyValue.innerText = this.keys[keyName][this.lang];
     });
@@ -113,6 +150,7 @@ class Keyboard extends KeyFactory {
     const handleKeyDown = (e) => {
       if (this.nonHandledCodes.includes(e.code)) return;
       e.preventDefault();
+      if (!this.keys[e.code]) return;
       const keyEl = this.keys[e.code].keyElem;
       keyEl.classList.add('active');
 
@@ -120,14 +158,14 @@ class Keyboard extends KeyFactory {
         this.pressed.push(e.code);
       }
 
-      if (e.repeat === false) {
-        this.checkPressed();
-      }
-
       if (this.letterKeys.includes(e.code)) {
         this.handleLetterKey(this.keys[e.code]);
       } else if (this.specialKeysFuncs[e.code]) {
-        this.specialKeysFuncs[e.code]();
+        this.specialKeysFuncs[e.code](e);
+      }
+
+      if (e.repeat === false) {
+        this.checkPressed();
       }
     };
 
