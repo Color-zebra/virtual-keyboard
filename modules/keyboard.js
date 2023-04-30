@@ -62,6 +62,21 @@ class Keyboard extends KeyFactory {
       Space: () => {
         this.handleLetterKey({ keyValue: { innerText: ' ' } });
       },
+      Enter: () => {
+        this.handleLetterKey({ keyValue: { innerText: '\n' } });
+      },
+      ArrowUp: () => {
+        this.handleLetterKey({ keyValue: { innerText: '\u2191' } });
+      },
+      ArrowDown: () => {
+        this.handleLetterKey({ keyValue: { innerText: '\u2193' } });
+      },
+      ArrowLeft: () => {
+        this.handleLetterKey({ keyValue: { innerText: '\u2190' } });
+      },
+      ArrowRight: () => {
+        this.handleLetterKey({ keyValue: { innerText: '\u2192' } });
+      },
       removeShift: () => {
         this.isShifted = false;
         this.keys.ShiftLeft.keyElem.classList.remove('active');
@@ -73,6 +88,7 @@ class Keyboard extends KeyFactory {
       setShift: () => {
         this.isShifted = true;
         this.keys.ShiftLeft.keyElem.classList.add('toggled');
+        this.keys.ShiftRight.keyElem.classList.add('toggled');
         this.updateKeyboard();
       },
       ShiftLeft: (e) => {
@@ -103,6 +119,17 @@ class Keyboard extends KeyFactory {
       },
       ShiftRight: (e) => {
         if (e.repeat) return;
+        if (e.type === 'click') {
+          if (!this.isShifted) {
+            this.specialKeysFuncs.setShift();
+            this.isShiftedByMouse = true;
+            this.pressed.push('ShiftRight');
+          } else {
+            this.specialKeysFuncs.removeShift();
+            this.pressed = this.pressed.filter((pressedKeyCode) => pressedKeyCode !== 'ShiftRight');
+          }
+          return;
+        }
         this.isShifted = true;
         this.updateKeyboard();
         const removeShift = (evnt) => {
@@ -139,6 +166,7 @@ class Keyboard extends KeyFactory {
     const newLang = this.lang === 'en' ? 'ru' : 'en';
     this.setLang(newLang);
     this.updateKeyboard();
+    this.checkShift();
   }
 
   initKeyboard() {
@@ -186,6 +214,7 @@ class Keyboard extends KeyFactory {
     if (this.isShiftedByMouse) {
       this.isShiftedByMouse = false;
       this.specialKeysFuncs.removeShift();
+      this.pressed = this.pressed.filter((pressedKeyCode) => pressedKeyCode !== 'ShiftLeft');
     }
   }
 
