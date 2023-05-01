@@ -54,6 +54,7 @@ body {
 }
 .keyboard__screen {
   height: 100%;
+  width: 100%;
   resize: none;
   background-color: rgba(39, 39, 39, 0.8);
   font-family: "IBM Plex Mono", monospace;
