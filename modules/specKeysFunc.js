@@ -34,6 +34,10 @@ class SpecialKeysFunc extends KeyFactory {
         this.output.selectionStart = startPos;
         this.output.selectionEnd = startPos;
       },
+      Tab: () => {
+        this.handleLetterKey({ keyValue: { innerText: '\u0009' } });
+        this.checkShift();
+      },
       Space: () => {
         this.handleLetterKey({ keyValue: { innerText: ' ' } });
         this.checkShift();
