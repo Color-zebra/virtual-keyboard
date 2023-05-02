@@ -22,7 +22,7 @@ class App extends KeyFactory {
           <textarea class="keyboard__screen" id="output" cols="135"></textarea>
         </div>
         <div class="keyboard__desc">
-          Клавиатура выполнена на Windows. Для смены языка использовать сочетание Shift + Ctrl. При смене языка с помощью мыши первой клавишей кликать на Shift. (При клике мышкой шифт работает до первой нажатой буквы). Из ES6 использовались classes, let, const, arrow functions.
+          Клавиатура выполнена на Windows. Для смены языка использовать сочетание Shift + Ctrl. При смене языка с помощью мыши первой клавишей кликать на Shift. (При клике мышкой шифт работает до первой нажатой буквы). Из ES6 использовались classes, let, const, arrow functions. При нажатом CapsLock, в отличии от зажатого Shift, цифры остаются цифрами, это нормальное поведение 
         </div>
         <div class="keyboard__board">
           <div class="keyboard__keyzone" id="input"></div>

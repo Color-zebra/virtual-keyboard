@@ -13,20 +13,20 @@ class Key extends KeyFactory {
     this.keyValue = this.keyElem.querySelector('.back');
   }
 
-  showRus() {
-    this.keyElem.innerText = this.rus;
+  showru() {
+    this.keyValue.innerText = this.ru;
   }
 
-  showEng() {
-    this.keyElem.innerText = this.eng;
+  showen() {
+    this.keyValue.innerText = this.en;
   }
 
-  showRusShifted() {
-    this.keyElem.innerText = this.rusShifted;
+  showruShifted() {
+    this.keyValue.innerText = this.ruShifted;
   }
 
-  showEngShifted() {
-    this.keyElem.innerText = this.engShifted;
+  showenShifted() {
+    this.keyValue.innerText = this.enShifted;
   }
 }
 
